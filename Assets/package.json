@@ -1,0 +1,17 @@
+{
+    "name": "com.mgs.streamingreader",
+    "version": "1.0.0",
+    "displayName": "Streaming Reader",
+    "description": "Reader for Unity StreamingAssets.",
+    "unity": "2021.3",
+    "keywords": [
+        "streaming",
+        "reader",
+        "android"
+    ],
+    "author": {
+        "name": "Mogoson",
+        "email": "mogoson@outlook.com",
+        "url": "https://github.com/mogoson"
+    }
+}

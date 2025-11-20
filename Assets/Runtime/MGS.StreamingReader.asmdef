@@ -1,0 +1,16 @@
+{
+    "name": "MGS.StreamingReader",
+    "rootNamespace": "",
+    "references": [
+        "MGS.IOUtility"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
