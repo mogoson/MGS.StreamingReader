@@ -11,6 +11,7 @@
  *************************************************************************/
 
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace MGS.Streaming
@@ -26,6 +27,29 @@ namespace MGS.Streaming
             var avatar = new GameObject(nameof(MonoAvatar)).AddComponent<MonoAvatar>();
             DontDestroyOnLoad(avatar.gameObject);
             return avatar;
+        }
+
+        public static void WaitForRoutine(IEnumerator routine)
+        {
+            var avatar = CreateOne();
+            avatar.StartCoroutine(Wait());
+            IEnumerator Wait()
+            {
+                yield return routine;
+                avatar.Dispose();
+            }
+        }
+
+        public static void WaitForSeconds(float seconds, Action finished)
+        {
+            var avatar = CreateOne();
+            avatar.StartCoroutine(Wait());
+            IEnumerator Wait()
+            {
+                yield return new WaitForSeconds(seconds);
+                avatar.Dispose();
+                finished?.Invoke();
+            }
         }
 
         public void Dispose()

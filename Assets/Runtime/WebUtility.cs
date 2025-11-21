@@ -20,13 +20,7 @@ namespace MGS.Streaming
     {
         public static void GetWebDataAsync(string url, Action<byte[], string, Exception> finished)
         {
-            var avatar = MonoAvatar.CreateOne();
-            avatar.StartCoroutine(GetWebData(url, OnFinished));
-            void OnFinished(byte[] data, string text, Exception error)
-            {
-                avatar.Dispose();
-                finished.Invoke(data, text, error);
-            }
+            MonoAvatar.WaitForRoutine(GetWebData(url, finished));
         }
 
         public static IEnumerator GetWebData(string url, Action<byte[], string, Exception> finished)
