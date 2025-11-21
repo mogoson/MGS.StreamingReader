@@ -24,7 +24,10 @@ namespace MGS.Streaming
             return $"{Application.streamingAssetsPath}/{fileName}";
         }
 
-#if UNITY_STANDALONE || UNITY_IOS
+#if !(UNITY_ANDROID || UNITY_WEBGL)
+        //Android: streamingAssetsPath in package, can not read by Local File System.
+        //WebGL: streamingAssetsPath in server directory, can not read by Local File System.
+
         public static string ReadAllText(string fileName)
         {
             var filePath = GetFilePath(fileName);

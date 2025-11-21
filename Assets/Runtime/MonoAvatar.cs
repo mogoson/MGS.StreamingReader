@@ -15,13 +15,17 @@ using UnityEngine;
 
 namespace MGS.Streaming
 {
+    /// <summary>
+    /// Avatar of MonoBehaviour for casual use.
+    /// (Should hold the instance created by CreateOne method and dispose it if no longer needed.)
+    /// </summary>
     public sealed class MonoAvatar : MonoBehaviour, IDisposable
     {
         public static MonoAvatar CreateOne()
         {
-            var go = new GameObject(nameof(MonoAvatar));
-            DontDestroyOnLoad(go);
-            return go.AddComponent<MonoAvatar>();
+            var avatar = new GameObject(nameof(MonoAvatar)).AddComponent<MonoAvatar>();
+            DontDestroyOnLoad(avatar.gameObject);
+            return avatar;
         }
 
         public void Dispose()
