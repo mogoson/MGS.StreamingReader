@@ -46,10 +46,16 @@ namespace MGS.Streaming
             return FileUtility.ReadAllBytes(filePath);
         }
 #endif
-        public static void ReadDataAsync(string fileName, Action<byte[], string, Exception> finished)
+        public static void ReadDataRoutineAsync(string fileName, Action<byte[], string, Exception> finished)
         {
             var filePath = GetFilePath(fileName);
-            WebUtility.GetWebDataAsync(filePath, finished);
+            WebUtility.GetWebDataRoutineAsync(filePath, finished);
+        }
+
+        public static void ReadDataThreadAsync(string fileName, Action<byte[], string, Exception> finished)
+        {
+            var filePath = GetFilePath(fileName);
+            WebUtility.GetWebDataThreadAsync(filePath, finished);
         }
     }
 }
