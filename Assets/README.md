@@ -10,6 +10,13 @@ Reader for Unity StreamingAssets.
 
 - Provide reader to read asset in the StreamingAssets directory.
 
+## Platform
+
+- Standalone.
+- Android.
+- iOS.
+- WebGL.
+
 ## Install
 
 - Unity --> Window --> Package Manager --> "+" --> Add package from git URL...
