@@ -12,19 +12,18 @@
 
 using System;
 using System.Collections;
-using System.Threading;
 using UnityEngine.Networking;
 
 namespace MGS.Streaming
 {
     public sealed class WebUtility
     {
-        public static void GetWebDataRoutineAsync(string url, Action<byte[], string, Exception> finished)
+        public static void GetWebDataAsync(string url, Action<byte[], string, Exception> finished)
         {
-            MonoAvatar.WaitForRoutine(GetWebDataRoutine(url, finished));
+            MonoAvatar.WaitForRoutine(GetWebData(url, finished));
         }
 
-        public static IEnumerator GetWebDataRoutine(string url, Action<byte[], string, Exception> finished)
+        public static IEnumerator GetWebData(string url, Action<byte[], string, Exception> finished)
         {
             using var request = UnityWebRequest.Get(url);
             yield return request.SendWebRequest();
@@ -37,48 +36,6 @@ namespace MGS.Streaming
             }
             var error = new Exception(request.error);
             finished.Invoke(null, null, error);
-        }
-
-        public static void GetWebDataThreadAsync(string url, Action<byte[], string, Exception> finished)
-        {
-            MonoAvatar.WaitForRoutine(GetWebDataThread(url, finished));
-        }
-
-        public static IEnumerator GetWebDataThread(string url, Action<byte[], string, Exception> finished)
-        {
-            byte[] data = null;
-            string text = null;
-            Exception error = null;
-            var isDown = false;
-
-            new Thread(GetWebData) { IsBackground = true }.Start();
-            void GetWebData()
-            {
-                using (var request = UnityWebRequest.Get(url))
-                {
-                    request.SendWebRequest();
-                    while (!request.isDone)
-                    {
-                        Thread.Sleep(100);
-                    }
-                    if (request.result == UnityWebRequest.Result.Success)
-                    {
-                        data = request.downloadHandler.data;
-                        text = request.downloadHandler.text;
-                    }
-                    else
-                    {
-                        error = new Exception(request.error);
-                    }
-                    isDown = true;
-                }
-            }
-
-            while (!isDown)
-            {
-                yield return null;
-            }
-            finished?.Invoke(data, text, error);
         }
     }
 }
