@@ -1,0 +1,16 @@
+{
+    "name": "MGS.Streaming.Sample",
+    "rootNamespace": "MGS.Streaming.Sample",
+    "references": [
+        "GUID:8c7f8b23ef18a844fbec5566c02003d8"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

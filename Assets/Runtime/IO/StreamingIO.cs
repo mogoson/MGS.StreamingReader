@@ -1,31 +1,37 @@
-/*************************************************************************
+﻿/*************************************************************************
  *  Copyright © 2025 Mogoson All rights reserved.
  *------------------------------------------------------------------------
- *  File         :  PersistentIO.cs
+ *  File         :  StreamingIO.cs
  *  Description  :  Default.
  *------------------------------------------------------------------------
  *  Author       :  Mogoson
  *  Version      :  1.0.0
- *  Date         :  11/21/2025
+ *  Date         :  11/20/2025
  *  Description  :  Initial development version.
  *************************************************************************/
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using MGS.IOUtility;
 using UnityEngine;
 
-namespace MGS.StreamingIO
+#if !(UNITY_ANDROID || UNITY_WEBGL)
+using System.Collections.Generic;
+using MGS.IO;
+#endif
+
+namespace MGS.Streaming
 {
-    public sealed class PersistentIO
+    public sealed class StreamingIO
     {
         public static string GetFilePath(string fileName)
         {
-            return $"{Application.persistentDataPath}/{fileName}";
+            return $"{Application.streamingAssetsPath}/{fileName}";
         }
 
-        #region File Read Api.
+#if !(UNITY_ANDROID || UNITY_WEBGL)
+        //Android: streamingAssetsPath in package, can not read by Local File System.
+        //WebGL: streamingAssetsPath in server directory, can not read by Local File System.
+
         public static string ReadAllText(string fileName, out Exception error)
         {
             var filePath = GetFilePath(fileName);
@@ -43,7 +49,7 @@ namespace MGS.StreamingIO
             var filePath = GetFilePath(fileName);
             return FileUtility.ReadAllBytes(filePath, out error);
         }
-
+#endif
         public static void ReadAsync(string fileName, Action<byte[], string, Exception> finished)
         {
             var filePath = GetFilePath(fileName);
@@ -55,26 +61,5 @@ namespace MGS.StreamingIO
             var filePath = GetFilePath(fileName);
             return WebUtility.RequestRoutine(filePath, finished);
         }
-        #endregion
-
-        #region File Write Api(Unity Override) in WebGL is async.
-        public static Exception WriteAllBytes(string fileName, byte[] bytes)
-        {
-            var filePath = GetFilePath(fileName);
-            return FileUtility.WriteAllBytes(filePath, bytes);
-        }
-
-        public static Exception WriteAllLines(string fileName, IEnumerable<string> contents)
-        {
-            var filePath = GetFilePath(fileName);
-            return FileUtility.WriteAllLines(filePath, contents);
-        }
-
-        public static Exception WriteAllText(string fileName, string contents)
-        {
-            var filePath = GetFilePath(fileName);
-            return FileUtility.WriteAllText(filePath, contents);
-        }
-        #endregion
     }
 }

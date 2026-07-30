@@ -1,11 +1,13 @@
 {
-    "name": "MGS.StreamingIO",
-    "rootNamespace": "MGS.StreamingIO",
+    "name": "MGS.Streaming.Editor",
+    "rootNamespace": "MGS.Streaming.Editor",
     "references": [
-        "MGS.IOUtility",
-        "MGS.Singleton"
+        "GUID:068fb68b18909ba40a172c72cb07338d",
+        "GUID:8c7f8b23ef18a844fbec5566c02003d8"
     ],
-    "includePlatforms": [],
+    "includePlatforms": [
+        "Editor"
+    ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

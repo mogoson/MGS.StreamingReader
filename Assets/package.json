@@ -1,13 +1,13 @@
 {
-    "name": "com.mgs.streamingio",
+    "name": "com.mgs.streaming",
     "version": "1.0.0",
-    "displayName": "Streaming IO",
-    "description": "IO for Unity Unity streaming assets.",
+    "displayName": "Streaming",
+    "description": "IO for Unity streaming assets.",
     "unity": "2021.3",
     "keywords": [
         "streaming",
-        "reader",
-        "android"
+        "persistent",
+        "porter"
     ],
     "author": {
         "name": "Mogoson",

@@ -5,14 +5,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "735585cde64c0fa0bb93ef59b62f402141ed861e"
+      "hash": "09a1112b982ffae128edc57959f5de19d7041ae1"
     },
-    "com.mgs.ioutility": {
-      "version": "https://github.com/mogoson/MGS.IOUtility.git?path=/Assets",
+    "com.mgs.io": {
+      "version": "https://github.com/mogoson/MGS.IO.git?path=/Assets",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "89c959ee83148a54dd3eeb455bf1e44b9afa6519"
+      "hash": "d449322b491e65ca132f42b558c029d368debf49"
     },
     "com.mgs.singleton": {
       "version": "https://github.com/mogoson/MGS.Singleton.git?path=/Assets",
